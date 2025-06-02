@@ -2073,7 +2073,9 @@ class ProtoFile:
                 yield '\n'
 
         for incfile in includes:
-            noext = os.path.splitext(incfile)[0]
+            basen = os.path.basename(incfile)
+            yield '/* add include %s */\n' % (basen)
+            noext = os.path.splitext(basen)[0]
             yield options.genformat % (noext + options.extension + options.header_extension)
             yield '\n'
 
